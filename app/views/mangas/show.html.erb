@@ -1,0 +1,33 @@
+<h1><%= @manga.title %></h1>
+
+<p><%= image_tag(@manga.image) %></p>
+
+<ul>
+	<a href="/mangas"> Home </a>
+  <li><%= link_to "Delete Manga", manga_path(@manga),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+</ul>
+
+<h2>Chapters</h2>
+<% @manga.chapters.each do |chapter| %>
+  <p>
+    <strong>Chapter:</strong>
+    <%= chapter.chapter_number %>
+  </p>
+<% end %>
+
+<h2>Add a chapter:</h2>
+<%= form_with model: [ @manga, @manga.chapters.build ] do |form| %>
+  <p>
+    <%= form.label :chapter_number %><br>
+    <%= form.text_field :chapter_number %>
+  </p>
+  <p>
+    <%= form.label :images %><br>
+    <%= form.file_field :images, multiple: true %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
