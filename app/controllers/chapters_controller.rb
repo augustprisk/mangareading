@@ -8,4 +8,5 @@ class ChaptersController < ApplicationController
   private
   	def chapter_params
   		params.require(:chapter).permit(:chapter_number, images: [])
+  	end
 end
